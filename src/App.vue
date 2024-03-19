@@ -26,11 +26,12 @@ const saveItems = () => {
 
 <template>
   <h1> <i v-bind:class="shoppingIcon">local_mall</i> {{ header }}</h1>
-  
-  <form v-on:submit.prevent="saveItems" class="add-item form">
-    
+
+  <form v-on:submit.prevent="items.push({ id: items.length, label: newItem})" class="add-item form">
+  <form v-on:submit.prevent="saveItems" class="add-item form"></form>
+
     <input v-model="newItem" type="text" placeholder="Agregar Articulo">
-    
+
     <label><input type="checkbox" v-model="newItemHighPriority">Alta Prioridad</label>
     
     <button class="btn btn-primary">
