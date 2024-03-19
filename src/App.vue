@@ -6,11 +6,12 @@ const header = ref('App Lista de compras');
 const shoppingIcon = ref('material-icons shopping-cart-icon');
 //Creando un referencia reactiva para almacenar el valor de la lista
 const items = ref([
-//{id: 0, label:'Leche'},
-//{id: 1, label:'Arroz'},
-//{id: 2, label:'Carne'},
-//{id: 3, label:'Pan'},
-// {id: 4, label:'Galletas'}
+{id: 0, label:'Leche',purchased:false, highPriority:true},
+{id: 1, label:'Arroz',purchased:false,highPriority:true},
+{id: 2, label:'Carne',purchased:true,highPriority:false},
+{id: 3, label:'Pan',purchased:false,highPriority:false},
+{id: 4, label:'Galletas',purchased:true,highPriority:true},
+{id: 5, label:'Cafe',purchased:true,highPriority:false},
 ]);
 const newItem = ref('');
 const newItemHighPriority = ref (false)
@@ -50,7 +51,10 @@ const doShow = (edit) => {
  
   <ul>
 
-    <li v-for="({id, label}, i) in items" v-bind:key="id">💀{{ label }}</li>
+    <li v-for="({id, label,purchased,highPriority}) in items"
+    :class="{priority:highPriority,strikeout:purchased}"
+     v-bind:key="id">
+     💀{{ label }}</li>
   </ul>
  <p v-if="items.length === 0">🥀No hay elementos en la lista🥀</p> 
 </template>
